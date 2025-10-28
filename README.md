@@ -1,6 +1,6 @@
 # Pokémon Crystal Fire
 
-This is a work in progress Pokémon ROM Hack based on the decompilation of Pokémon Emerald.
+This is a work in progress Pokémon ROM Hack based on the Expansion decompilation of Pokémon Emerald.
 
 It currently builds the following ROM:
 
