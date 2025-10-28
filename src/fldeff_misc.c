@@ -339,9 +339,9 @@ bool8 IsComputerScreenCloseEffectActive(void)
 #define tBlendCnt      data[7]
 #define tBlendY        data[8]
 
-static void CreateComputerScreenEffectTask(TaskFunc func, u16 increment, u16 unused, u8 priority)
+static void CreateComputerScreenEffectTask(void (*taskfunc) (u8), u16 increment, u16 unused, u8 priority)
 {
-    u8 taskId = CreateTask(func, priority);
+    u8 taskId = CreateTask(taskfunc, priority);
 
     gTasks[taskId].tState = 0;
     gTasks[taskId].tHorzIncrement = increment == 0 ? 16 : increment;
@@ -544,7 +544,7 @@ static void AdjustSecretPowerSpritePixelOffsets(void)
     }
 }
 
-bool8 SetUpFieldMove_SecretPower(void)
+bool32 SetUpFieldMove_SecretPower(void)
 {
     u8 mb;
 
@@ -1024,7 +1024,7 @@ void DoSecretBaseGlitterMatSparkle(void)
     {
         gSprites[spriteId].coordOffsetEnabled = TRUE;
         gSprites[spriteId].oam.priority = 1;
-        gSprites[spriteId].oam.paletteNum = 5;
+        UpdateSpritePaletteByTemplate(gFieldEffectObjectTemplatePointers[FLDEFFOBJ_SPARKLE], &gSprites[spriteId]);
         gSprites[spriteId].callback = SpriteCB_GlitterMatSparkle;
         gSprites[spriteId].data[0] = 0;
     }
