@@ -17,7 +17,7 @@ struct PokenavMonListItem
 struct PokenavMatchCallEntry
 {
     bool8 isSpecialTrainer;
-    mapsec_u8_t mapSec;
+    u8 mapSec;
     u16 headerId;
 };
 
@@ -171,6 +171,8 @@ enum
     HELPBAR_NONE,
     HELPBAR_MAP_ZOOMED_OUT,
     HELPBAR_MAP_ZOOMED_IN,
+    HELPBAR_MAP_ZOOMED_OUT_CANFLY,
+    HELPBAR_MAP_ZOOMED_IN_CANFLY,
     HELPBAR_CONDITION_MON_LIST,
     HELPBAR_CONDITION_MON_STATUS,
     HELPBAR_CONDITION_MARKINGS,
@@ -295,6 +297,7 @@ enum
     POKENAV_MAP_FUNC_ZOOM_OUT,
     POKENAV_MAP_FUNC_ZOOM_IN,
     POKENAV_MAP_FUNC_EXIT,
+    POKENAV_MAP_FUNC_FLY
 };
 
 // Modes for PokenavFadeScreen
@@ -410,7 +413,7 @@ void FreeMatchCallSubstruct1(void);
 int IsMatchCallListInitFinished(void);
 int GetNumberRegistered(void);
 struct PokenavMatchCallEntry *GetMatchCallList(void);
-mapsec_u16_t GetMatchCallMapSec(int index);
+u16 GetMatchCallMapSec(int index);
 bool32 ShouldDrawRematchPokeballIcon(int index);
 void ClearRematchPokeballIcon(u16 windowId, u32 tileOffset);
 int GetMatchCallTrainerPic(int index);
@@ -419,7 +422,7 @@ const u8 *GetMatchCallMessageText(int index, bool8 *newRematchRequest);
 u16 GetMatchCallOptionCursorPos(void);
 u16 GetMatchCallOptionId(int optionId);
 void BufferMatchCallNameAndDesc(struct PokenavMatchCallEntry *matchCallEntry, u8 *str);
-mapsec_u8_t GetMatchTableMapSectionId(int rematchIndex);
+u8 GetMatchTableMapSectionId(int rematchIndex);
 int GetIndexDeltaOfNextCheckPageDown(int index);
 int GetIndexDeltaOfNextCheckPageUp(int index);
 bool32 IsRematchEntryRegistered(int rematchIndex);
@@ -438,6 +441,7 @@ void CreateRegionMapLoopedTask(s32 index);
 bool32 IsRegionMapLoopedTaskActive(void);
 void FreeRegionMapSubstruct1(void);
 void FreeRegionMapSubstruct2(void);
+void UpdateRegionMapHelpBarText(void);
 
 // pokenav_conditions.c
 bool32 PokenavCallback_Init_ConditionGraph_Party(void);
